@@ -1,0 +1,51 @@
+
+
+.outer-div{
+    display: flex;
+    flex-direction: row;
+    height: 75px;
+    background-color: #006469;
+    align-items: center;
+    
+}
+.nav-bar{
+    border-radius: 10px;
+    width:90%;
+    background-color: #ffffff;
+    margin-left: 10px;
+    gap: 100px;
+}
+
+.nav-bar ul{
+     display: flex;
+     flex-direction: row;
+     list-style: none;
+     text-decoration: none;
+     gap: 50px;    
+     justify-content: center;
+     
+}
+
+.nav-bar{
+    color: #009AA3;
+}
+
+a{
+    text-decoration: none;
+}
+
+.profile{
+    border-radius: 50%;
+    width: 12%;
+    
+}
+
+.med{
+    width: 8%;
+}
+
+
+
+.dp{
+   margin-left: auto; 
+}
