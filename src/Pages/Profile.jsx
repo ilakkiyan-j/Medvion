@@ -105,7 +105,7 @@ export default function Profile() {
             </div>
             <div>
                 <h1>About us</h1>
-                <p>At Medvion, we are dedicated to creating a platform that caters to all your needs. Our mission is to simplify and enhance your experience by providing innovative solutions tailored to your unique requirements. Whether you're looking for convenience, efficiency, or reliability, Medvion is here to empower you every step of the way.</p>
+                <p>At Medvion, we are dedicated to creating a platform that caters to all your needs. Our mission is to simplify and enhance your experience by providing innovative solutions tailored to your unique requirements. Whether you&apos;re looking for convenience, efficiency, or reliability, Medvion is here to empower you every step of the way.</p>
             </div>
         </div>
     );

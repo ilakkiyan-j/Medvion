@@ -201,6 +201,25 @@ app.post("/update-visibility", async (req, res) => {
   }
 });
 
+app.get("/records", async (req, res) => {
+  try {
+    console.log("Current SDC Code:", req.session?.user?.sdc);
+    if (!req.session?.user?.sdc) {
+      return res.status(400).json({ success: false, message: "User not authenticated" });
+    }
+
+    const queryText = `SELECT * FROM user_records WHERE user_id = (
+                     SELECT user_id FROM user_profiles WHERE sdc_code = $1
+                   )`;
+    const records = await pool.query(queryText, [req.session.user.sdc]);
+
+    return res.json({ success: true, records: records.rows });
+
+  } catch (err) {
+    console.error("Error getting records:", err);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
 
 
 // 🔹 **Logout Route**
