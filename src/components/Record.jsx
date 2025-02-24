@@ -14,7 +14,7 @@ export default function Record(props) {
         <p>Alternative System of Medicine: {props.alternative_system_of_medicine}</p>
       </div>
 
-      {/* {props.hospitalized && (
+      {props.hospitalized && (
         <div>
           <h3>Hospitalization Details</h3>
           <p>Hospitalized Duration: {props.hospitalized_duration}</p>
@@ -58,7 +58,7 @@ export default function Record(props) {
           <h3>Lab Results</h3>
           <iframe width="100%" height="600px" src={`data:application/pdf;base64,${props.lab_results}`} />
         </div>
-      )} */}
+      )}
     </div>
   );
 }
