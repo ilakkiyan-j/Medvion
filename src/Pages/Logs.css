@@ -1,0 +1,84 @@
+/* General styling */
+.logs-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Title */
+  .logs-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .search-icon {
+    font-size: 18px;
+    color: gray;
+    margin-right: 8px;
+  }
+  
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+  }
+  
+  /* Log entry */
+  .log-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .log-entry:hover {
+    background: #e9ecef;
+  }
+  
+  /* Log content */
+  .log-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  /* Report button */
+  .report-button {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .report-button:hover {
+    color: darkred;
+    text-decoration: underline;
+  }
+  

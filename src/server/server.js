@@ -129,17 +129,22 @@ app.get("/details", async (req, res) => {
     }
 
     const queryText = `
-      SELECT 
-        u.*, 
-        p.sdc_code, 
-        p.qr_code, 
-        p.visibility, 
-        p.photo, 
-        p.phone_no, 
-        p.email 
-      FROM user_details u 
-      JOIN user_profiles p ON u.user_id = p.user_id
-      WHERE p.sdc_code = $1
+   SELECT 
+    u.*, 
+    e.name AS emg_name,
+    e.phone AS emg_phone,
+    e.address AS emg_address,
+    e.relation AS relation,  -- Fixed typo
+    p.sdc_code, 
+    p.qr_code, 
+    p.visibility, 
+    p.photo, 
+    p.phone_no, 
+    p.email 
+FROM user_details u 
+JOIN user_profiles p ON u.user_id = p.user_id
+LEFT JOIN emergency_details e ON u.user_id = e.user_id  -- Changed to LEFT JOIN
+WHERE p.sdc_code = $1;
     `;
 
     const details = await pool.query(queryText, [req.session.user.sdc]);
@@ -163,7 +168,6 @@ app.get("/details", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
 
 app.post("/update-visibility", async (req, res) => {
   try {
@@ -215,6 +219,74 @@ app.get("/records", async (req, res) => {
 
     return res.json({ success: true, records: records.rows });
 
+  } catch (err) {
+    console.error("Error getting records:", err);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+app.get("/getUserInfo", async (req, res) => {
+  const { sdc_code, qr_code } = req.body;
+
+  try {
+    let queryText;
+    let queryParam;
+
+    if (sdc_code) {
+      queryText = `
+        SELECT 
+          full_name,
+          age,
+          gender,
+          date_of_birth,
+          address,
+          smoking,
+          alcoholism,
+          tobacco,
+          others,
+          allergy,
+          CASE 
+            WHEN visibility = true THEN blood_group
+            ELSE NULL
+          END AS blood_group,
+          CASE 
+            WHEN visibility = true THEN medical_history
+            ELSE NULL
+          END AS medical_history
+        FROM user_details 
+        WHERE sdc_code = $1
+      `;
+      queryParam = sdc_code;
+    } else {
+      queryText = `
+        SELECT 
+          full_name,
+          age,
+          gender,
+          date_of_birth,
+          address,
+          smoking,
+          alcolism,
+          tobacco,
+          others,
+          allergy,
+          CASE 
+            WHEN visibility = true THEN blood_group
+            ELSE NULL
+          END AS blood_group,
+          CASE 
+            WHEN visibility = true THEN medical_history
+            ELSE NULL
+          END AS medical_history
+        FROM user_details 
+        WHERE qr_code = $1
+      `;
+      queryParam = qr_code;
+    }
+
+    const info = await pool.query(queryText, [queryParam]);
+
+    return res.json({ success: true, records: info.rows[0] });
   } catch (err) {
     console.error("Error getting records:", err);
     res.status(500).json({ success: false, message: "Internal server error" });

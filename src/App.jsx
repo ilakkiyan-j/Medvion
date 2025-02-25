@@ -6,6 +6,7 @@ import Home from "./Pages/Home.jsx";
 import Logs from "./Pages/Logs.jsx";
 import Records from "./Pages/Records.jsx";
 import Profile from "./Pages/Profile.jsx";
+import DrHome from "./Pages/DrHome.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/logs" element={<Logs/>}/>
       <Route path="/records" element={<Records/>}/>
       <Route path="/profile" element={<Profile/>}/>
+      <Route path="/drHome" element={<DrHome/>} />
     </Routes>
     </BrowserRouter>
   )
